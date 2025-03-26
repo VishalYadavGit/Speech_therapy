@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-=6o64+6@y!gyn#lpz9nb4yvy)))6=8b56iamxe3d8jig_g&js_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['speech-therapy-k3u9f6a99-xegendvys-projects.vercel.app',]
 
 
 # Application definition

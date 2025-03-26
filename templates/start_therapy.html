@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mx-auto mt-8 px-4">
+    <div class="therapy-container max-w-lg mx-auto mt-12 p-6 bg-white rounded-lg shadow-md text-center">
+        <h2 class="text-2xl font-bold text-primary-dark mb-4">Speech Therapy</h2>
+        <p class="text-gray-600 mb-6">Please repeat the sentence after listening to it.</p>
+        <p id="music-name" class="sentence-display italic text-lg text-gray-700 mb-6"></p>
+        <button id="play-music-button" class="btn text-white py-2 px-4 bg-primaryDark rounded hover:bg-primaryDarkHover mt-4 disabled:opacity-50 disabled:cursor-not-allowed" onclick="playMusic()">Play Music</button>
+    </div>
+</div>
+    <script>
+        const sentences = {{ sentences|safe }};
+    let currentIndex = 0;
+    let lastPlayedIndex = -1;
+
+    function nextAudio() {
+        currentIndex = (currentIndex + 1) % sentences.length;
+        document.getElementById('controls').style.display = 'none';
+        playAudio();
+    }
+
+    function playMusic() {
+        try {
+            const playButton = document.getElementById('play-music-button');
+            playButton.disabled = true; // Disable the button
+            const musicFolder = '/static/music/';
+            const musicFiles = ['हेलो मैं हूं आपकी वॉयस थेरेपी.mp3', 'कुछ भी मुश्किल नहीं होता, बस अपनी सोच बदलनी पड़ती है।.mp3','ज़िन्दगी में कभी भी अपने सपनों के साथ समझौता मत करना।.mp3','बिल्ली चटाई पर बैठी है।.mp3','वह गिलास से पानी पी रही है।.mp3',"सूरज आसमान में चमक रहा है।.mp3",
+    "मुझे सुबह के समय सेब खाना बहुत पसंद है।.mp3",
+    "वह अपनी खिलौने की कार से खेल रहा है।.mp3",
+    "कुत्ता डाकिये पर जोर से भौंक रहा है।.mp3",
+    "मेरे बैग में एक नीला गेंद है।.mp3",
+    "बगिया में फूल खिला रहे हैं।.mp3",
+    "वह आज लाल रंग की ड्रेस पहने हुए है।.mp3",
+    "मैं आसमान में उड़ता हुआ एक पक्षी देख सकता हूँ।.mp3",
+    "वह पेड़ बहुत ऊँचा और हरा है।.mp3",
+    "मैं किताब पढ़ रहा हूँ।.mp3",
+    "वह स्कूल जा रही है।.mp3",
+    "मुझे क्रिकेट खेलना बहुत पसंद है।.mp3",
+    "पानी में मछलियाँ तैर रही हैं।.mp3",
+    "वह स्कूल के बाद घर जाती है।.mp3",
+    "कृपया दरवाजा बंद करो।.mp3",
+    "वह अपने दोस्तों के साथ खेलता है।.mp3",
+    "तुमने जो किया, वह बहुत अच्छा था।.mp3",
+    "यह बहुत मजेदार फिल्म है।.mp3"];
+
+            // Play music sequentially
+            lastPlayedIndex = (lastPlayedIndex + 1) % musicFiles.length;
+            const musicUrl = musicFolder + musicFiles[lastPlayedIndex];
+            const audio = new Audio(musicUrl);
+            const musicName = musicFiles[lastPlayedIndex].replace('.mp3', '');
+            document.getElementById('music-name').textContent = musicName;
+            audio.play();
+            audio.onended = () => {
+                playButton.disabled = false;
+                document.getElementById('controls').style.display = 'block';
+            };
+        } catch (error) {
+            console.error('Error playing music:', error);
+            document.getElementById('play-music-button').disabled = false;
+        }
+    }
+</script>
+{% endblock content %}

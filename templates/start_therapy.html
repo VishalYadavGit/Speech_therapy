@@ -9,15 +9,8 @@
     </div>
 </div>
     <script>
-        const sentences = {{ sentences|safe }};
     let currentIndex = 0;
     let lastPlayedIndex = -1;
-
-    function nextAudio() {
-        currentIndex = (currentIndex + 1) % sentences.length;
-        document.getElementById('controls').style.display = 'none';
-        playAudio();
-    }
 
     function playMusic() {
         try {

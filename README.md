@@ -15,7 +15,7 @@ We are planning to enhance the project with the following features:
 3. **Gamification**: Add rewards and challenges to make the experience more engaging.
 4. **Multilingual Support**: Expand the application to support multiple languages.
 
-## How to Use or Visit ('https://speech-therapy-k3u9f6a99-xegendvys-projects.vercel.app')
+## How to Use (Site has a lot music files so its better to run it locally)
 
 1. Clone the repository:
    ```bash
